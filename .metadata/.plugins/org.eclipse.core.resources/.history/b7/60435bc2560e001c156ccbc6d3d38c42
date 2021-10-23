@@ -1,0 +1,103 @@
+package mini;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class LoginPanel extends JPanel{
+	private RecipeMain recipeMain;
+	private JLabel loginL, idL, pwdL;
+	private JTextField idT;
+	private JPasswordField pwdT;
+	private RoundedButton loginBtn;
+	private String check;
+	private String id;
+	private Icon loginImg = new ImageIcon("image/로그인.png");
+	private Icon idImg = new ImageIcon("image/아이디.png");
+	private Icon pwdImg = new ImageIcon("image/비밀번호.png");
+	
+	public LoginPanel(RecipeMain recipeMain) {
+		this.recipeMain = recipeMain;
+		setLayout(new GridLayout(5, 1));
+		
+		JPanel P4 = new JPanel();
+		P4.setBackground(new Color(251, 169, 134));
+		
+		JPanel P = new JPanel();
+		P.setBackground(new Color(251, 169, 134));
+		loginL = new JLabel(" 로그인 ", JLabel.CENTER);
+		loginL.setFont(new Font("12롯데마트행복Bold", Font.BOLD, 35));
+		loginL.setPreferredSize(new Dimension(400, 60));
+		P.add(loginL);
+		
+		JPanel P1 = new JPanel();
+		P1.setBackground(new Color(251, 169, 134));
+		idL = new JLabel("     ID");
+		idT = new JTextField("",25);
+		idL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		idL.setPreferredSize(new Dimension(60, 45));
+		idT.setPreferredSize(new Dimension(100, 45));
+		P1.add(idL);
+		P1.add(idT);
+		
+		JPanel P2 = new JPanel();
+		P2.setBackground(new Color(251, 169, 134));
+		pwdL = new JLabel("비밀번호");
+		pwdT = new JPasswordField("",25);
+		pwdL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		pwdL.setPreferredSize(new Dimension(60, 45));
+		pwdT.setPreferredSize(new Dimension(100, 45));
+		P2.add(pwdL);
+		P2.add(pwdT);
+		
+		JPanel P3 = new JPanel();
+		P3.setBackground(new Color(251, 169, 134));
+		loginBtn = new JButton("로그인");
+		loginBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		loginBtn.setPreferredSize(new Dimension(100, 45));
+		loginBtn.setBackground(new Color(255, 255, 255));
+		loginBtn.setBorderPainted(false);
+		P3.add(loginBtn);
+		
+		this.add(P4);
+		this.add(P);
+		this.add(P1);
+		this.add(P2);
+		this.add(P3);
+		
+		loginBtn.addActionListener(recipeMain);
+	} // 생성자
+	
+	public String getLoginCheck() {
+		id = idT.getText();
+		String pwd = pwdT.getText();
+		check = new MemberDAO().loginMember(id, pwd);
+		return check;
+	}
+	
+	public void setId(String id) { 
+		// 로그인 성공 시 id 저장
+		// 로그아웃시 id null값 받아옴
+		this.id = id;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public JTextField getIdT() {
+		return idT;
+	}
+	
+	public JPasswordField getPwdT() {
+		return pwdT;
+	}
+	
+}

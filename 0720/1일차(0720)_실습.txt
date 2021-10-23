@@ -1,0 +1,37 @@
+class SungJuk {
+	public static void main(String[] args) {
+		System.out.println("국어 " + 89);
+		System.out.println("영어 " + 100);
+		System.out.println("수학 " + 80);
+		System.out.println("총점 " + (89+100+80));
+		System.out.println("평균 " + String.format("%.3f", ((89.+100.+80.)/3)));
+	}
+}
+
+--------------------------------실행결과---------------------------------
+
+D:\java_se>javac SungJuk.java
+
+D:\java_se>java SungJuk
+국어 89
+영어 100
+수학 80
+총점 269
+평균 89.667
+
+----------------------------------모범답안-----------------------------------
+
+class SungJuk {
+	public static void main(String[] args) {
+		System.out.println("국어\t영어\t수학\t총점\t평균");
+		System.out.println(89 + "\t" + 100 + "\t" + 80 + "\t" + (89+100+80) + "\t" + String.format("%.3f", (double)(89+100+80)/3.0));
+	}
+}
+
+-----------------------------------답안실행결과-----------------------------
+
+D:\java_se>javac SungJuk.java
+
+D:\java_se>java SungJuk
+국어    영어    수학    총점    평균
+89      100     80      269     89.667

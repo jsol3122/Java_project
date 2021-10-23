@@ -1,0 +1,247 @@
+package mini;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class WritePanel extends JPanel implements ActionListener{
+	private RecipeMain recipeMain;
+	private JLabel writeL, nameL, idL, idCheckL, pwdL, emailL, emailNumL, emailCheckL;
+	private JTextField nameT, idT, emailT, emailNumT;
+	private JPasswordField pwdT;
+	private JButton idCheckBtn, emailCheckBtn, emailNumBtn, writeBtn;
+	boolean idCheck;
+	boolean emailCheck;
+	int emailNum;
+	private Icon writeImg = new ImageIcon("image/회원가입.png");
+	private Icon nameImg = new ImageIcon("image/이름.png");
+	private Icon idImg = new ImageIcon("image/아이디.png");
+	private Icon pwdImg = new ImageIcon("image/비밀번호.png");
+	private Icon mailImg = new ImageIcon("image/이메일.png");
+	private Icon emailNumImg = new ImageIcon("image/인증번호.png");
+	private Icon deco1Img = new ImageIcon("image/하트pink.png");
+	private Icon deco2Img = new ImageIcon("image/하트green.png");
+	private Icon deco3Img = new ImageIcon("image/하트blue.png");
+	private Icon deco4Img = new ImageIcon("image/하트pink.png");
+	
+	public WritePanel(RecipeMain recipeMain) {
+		this.recipeMain = recipeMain;
+		setLayout(new GridLayout(10, 1));
+		
+		JPanel P9 = new JPanel();
+		P9.setBackground(new Color(251, 169, 134));
+		writeL = new JLabel(" 회원 가입 ", JLabel.CENTER);
+		writeL.setFont(new Font("12롯데마트행복Bold", 0, 28));
+		writeL.setPreferredSize(new Dimension(400, 60));
+		P9.add(writeL);
+		
+		JPanel P = new JPanel();
+		P.setBackground(new Color(251, 169, 134));
+		
+		JPanel P1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		P1.setBackground(new Color(251, 169, 134));
+		nameL = new JLabel("  이  름");
+		nameT = new JTextField("",18);
+		nameL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		nameL.setPreferredSize(new Dimension(60, 30));
+		nameT.setPreferredSize(new Dimension(100, 30));
+		P1.add(nameL);
+		P1.add(nameT);
+		
+		JPanel P2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		P2.setBackground(new Color(251, 169, 134));
+		idL = new JLabel("    ID");
+		idT = new JTextField("",18);
+		idCheckBtn = new JButton("중복 체크");
+		idL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		idCheckBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		idCheckBtn.setBackground(new Color(255, 255, 255));
+		idCheckBtn.setBorderPainted(false);
+		idL.setPreferredSize(new Dimension(60, 30));
+		idT.setPreferredSize(new Dimension(100, 30));
+		idCheckBtn.setPreferredSize(new Dimension(120, 30));
+		P2.add(idL);
+		P2.add(idT);
+		P2.add(idCheckBtn);
+		
+		JPanel P3 = new JPanel();
+		P3.setBackground(new Color(251, 169, 134));
+		idCheckL = new JLabel("");
+		idCheckL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		idCheckL.setPreferredSize(new Dimension(320, 30));
+		P3.add(idCheckL);
+		
+		JPanel P4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		P4.setBackground(new Color(251, 169, 134));
+		pwdL = new JLabel("비밀번호");
+		pwdT = new JPasswordField("",18);
+		pwdL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		pwdL.setPreferredSize(new Dimension(60, 30));
+		pwdT.setPreferredSize(new Dimension(100, 30));
+		P4.add(pwdL);
+		P4.add(pwdT);
+		
+		JPanel P5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		P5.setBackground(new Color(251, 169, 134));
+		emailL = new JLabel(" 이메일");
+		emailT = new JTextField("",18);
+		emailCheckBtn = new JButton("인증번호발송");
+		emailL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailCheckBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailCheckBtn.setBackground(new Color(255, 255, 255));
+		emailCheckBtn.setBorderPainted(false);
+		emailL.setPreferredSize(new Dimension(60, 30));
+		emailT.setPreferredSize(new Dimension(100, 30));
+		emailCheckBtn.setPreferredSize(new Dimension(120, 30));
+		P5.add(emailL);
+		P5.add(emailT);
+		P5.add(emailCheckBtn);
+		
+		JPanel P6 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		P6.setBackground(new Color(251, 169, 134));
+		emailNumL = new JLabel("인증번호");
+		emailNumT = new JTextField("",18);
+		emailNumBtn = new JButton("인증번호확인");
+		emailNumL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailNumBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailNumBtn.setBorderPainted(false);
+		emailNumBtn.setBackground(new Color(255, 255, 255));
+		emailNumL.setPreferredSize(new Dimension(60, 30));
+		emailNumT.setPreferredSize(new Dimension(100, 30));
+		emailNumBtn.setPreferredSize(new Dimension(120, 30));
+		P6.add(emailNumL);
+		P6.add(emailNumT);
+		P6.add(emailNumBtn);
+		
+		JPanel P7 = new JPanel();
+		P7.setBackground(new Color(251, 169, 134));
+		emailCheckL = new JLabel("");
+		emailCheckL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailCheckL.setPreferredSize(new Dimension(320, 30));
+		P7.add(emailCheckL);
+		
+		JPanel P8 = new JPanel();
+		P8.setBackground(new Color(251, 169, 134));
+		writeBtn = new JButton("회원가입");
+		writeBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		writeBtn.setBackground(new Color(255, 255, 255));
+		writeBtn.setPreferredSize(new Dimension(100, 30));
+		writeBtn.setBorderPainted(false);
+		P8.add(writeBtn);
+		
+		this.add(P9);
+		this.add(P);
+		this.add(P1);
+		this.add(P2);
+		this.add(P3);
+		this.add(P4);
+		this.add(P5);
+		this.add(P6);
+		this.add(P7);
+		this.add(P8);
+		
+		// 이벤트
+		writeBtn.addActionListener(recipeMain);
+		idCheckBtn.addActionListener(this);
+		emailCheckBtn.addActionListener(this);
+		emailNumBtn.addActionListener(this);
+	} // 생성자
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		MemberDTO dto = new MemberDTO();
+		MemberDAO dao = new MemberDAO();
+		if(e.getSource() == idCheckBtn) { // id중복체크
+			if(idT.getText().length()==0) 
+				JOptionPane.showMessageDialog(this, "아이디를 입력해주세요");
+			else {
+				String name = dao.checkId(idT.getText());
+				if(idT.getText().equals(name)) {
+					idCheckL.setText("사용할 수 없는 ID입니다");
+					idT.setText("");
+				}else {
+					idCheckL.setText("사용 가능한 ID입니다");
+					idCheck = true;
+					
+					if(emailCheck==true) { // db등록
+						dto.setId(idT.getText());
+						dto.setName(nameT.getText());
+						dto.setEmail(emailT.getText());
+						dto.setPwd(pwdT.getText());
+						dto.setCheckNum(emailNumT.getText());
+						
+						dao.insertMember(dto);
+					}
+				}
+			}
+		}else if(e.getSource() == emailCheckBtn) { // 인증번호 발송
+			if(emailT.getText().indexOf("@") != -1) { // 이메일 형식 체크
+				EmailCheck emailCheck = new EmailCheck(emailT.getText());
+				emailNum = emailCheck.getEmailNum();
+				JOptionPane.showMessageDialog(null, "인증번호가 메일로 발송되었습니다");
+			}else JOptionPane.showMessageDialog(null, "잘못된 이메일 형식입니다");
+		}else if(e.getSource() == emailNumBtn) { // 인증번호 확인
+			if(emailNumT.getText().equals(emailNum+"")) {
+				emailCheckL.setText("인증번호 확인되었습니다");
+				emailCheck = true;
+				
+				if(idCheck==true) { // db등록
+					dto.setId(idT.getText());
+					dto.setName(nameT.getText());
+					dto.setEmail(emailT.getText());
+					dto.setPwd(pwdT.getText());
+					dto.setCheckNum(emailNumT.getText());
+					
+					dao.insertMember(dto);
+				}
+			}else {
+				emailCheckL.setText("인증번호가 틀립니다");
+				emailNumT.setText("");
+			}
+		}
+	} // 액션리스너
+// getter ------------------------------------------
+	public boolean getIdCheck() {
+		return idCheck;
+	}
+	
+	public boolean getEmailCheck() {
+		return emailCheck;
+	}
+	
+	public JTextField getNameT() {
+		return nameT;
+	}
+	
+	public JTextField getIdT() {
+		return idT;
+	}
+	
+	public JTextField getEmailT() {
+		return emailT;
+	}
+	
+	public JTextField getEmailNumT() {
+		return emailNumT;
+	}
+	
+	public JPasswordField getPwdT() {
+		return pwdT;
+	}
+	
+}

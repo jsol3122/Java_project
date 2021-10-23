@@ -1,0 +1,88 @@
+package mini;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class DeletePanel extends JPanel{
+   private RecipeMain recipeMain;
+   private JLabel deleteL, nameL, idL, pwdL;
+   private JTextField nameT, idT;
+   private JPasswordField pwdT;
+   private RoundedButton deleteBtn;
+   private Icon deleteImg = new ImageIcon("image/È¸¿øÅ»Åð.png");
+   private Icon nameImg = new ImageIcon("image/ÀÌ¸§.png");
+   private Icon idImg = new ImageIcon("image/¾ÆÀÌµð.png");
+   private Icon pwdImg = new ImageIcon("image/ºñ¹Ð¹øÈ£.png");
+   
+   public DeletePanel(RecipeMain recipeMain) {
+      this.recipeMain = recipeMain;
+      
+      setLayout(null);
+      
+      deleteL = new JLabel(deleteImg);
+      deleteL.setBounds(100,45,180,50);
+      this.add(deleteL);
+    
+      nameL = new JLabel(nameImg);
+      nameT = new JTextField("",18);
+      nameL.setBounds(75,175,70,30);
+      nameT.setBounds(160,175,140,30);
+      this.add(nameL);
+      this.add(nameT);
+
+      idL = new JLabel(idImg);
+      idT = new JTextField("",18);
+      idL.setBounds(60,230,90,30);
+      idT.setBounds(160,230,140,30);
+      this.add(idL);
+      this.add(idT);
+
+      pwdL = new JLabel(pwdImg);
+      pwdT = new JPasswordField("",18);
+      pwdL.setBounds(65,285,90,30);
+      pwdT.setBounds(160,285,140,30);
+      this.add(pwdL);
+      this.add(pwdT);
+
+      deleteBtn = new RoundedButton("Å»Åð ¿Ï·á");
+      deleteBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+      deleteBtn.setBounds(120,340,160,40);
+      deleteBtn.setBackground(new Color(253,232,248));
+      this.add(deleteBtn);
+      deleteBtn.setBorderPainted(false);
+		
+      this.setBackground(new Color(255,255,255));
+
+      deleteBtn.addActionListener(recipeMain);
+   } // »ý¼ºÀÚ
+   
+   public int deleteMember(String pwdCheck) {
+	   int su = 0;
+	   
+	   su = new MemberDAO().deleteMember(pwdCheck);
+	   return su;
+   }
+   
+   public JTextField getNameT() {
+	   return nameT;
+   }
+   
+   public JTextField getIdT() {
+	   return idT;
+   }
+	
+   public JPasswordField getPwdT() {
+	   return pwdT;
+   }
+   
+}

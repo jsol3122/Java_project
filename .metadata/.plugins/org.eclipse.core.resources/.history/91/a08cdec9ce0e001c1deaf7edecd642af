@@ -1,0 +1,94 @@
+package mini;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class UpdatePanel extends JPanel{
+	private RecipeMain recipeMain;
+	private JLabel updateL, warningL, idL, pwdL, emailL;
+	private JTextField idT, emailT;
+	private JPasswordField pwdT;
+	private RoundedButton updateBtn;
+	private Icon updateImg = new ImageIcon("image/내 정보 수정.png");
+	private Icon idImg = new ImageIcon("image/아이디.png");
+	private Icon pwdImg = new ImageIcon("image/비밀번호.png");
+	private Icon mailImg = new ImageIcon("image/이메일.png");
+	
+	public UpdatePanel(RecipeMain recipeMain) {
+		this.recipeMain = recipeMain;
+		
+		setLayout(null);
+		
+		updateL = new JLabel(updateImg);
+		updateL.setBounds(100,45,180,50);
+		this.add(updateL);
+		
+		warningL = new JLabel("* 새롭게 변경할 회원정보를 입력해주세요 *");
+		warningL.action(null, recipeMain)		warningL.setBounds(85, 100, 180, 20);
+		this.add(warningL);
+		
+		idL = new JLabel(idImg);
+		idT = new JTextField("",18);
+		idL.setBounds(70,175,70,30);
+		idT.setBounds(160,175,140,30);
+		this.add(idL);
+		this.add(idT);
+
+		pwdL = new JLabel(pwdImg);
+		pwdT = new JPasswordField("",18);
+		pwdL.setBounds(65,235,90,30);
+		pwdT.setBounds(160,230,140,30);
+		this.add(pwdL);
+		this.add(pwdT);
+		
+		emailL = new JLabel(mailImg);
+		emailT = new JTextField("",18);
+		emailL.setBounds(70,285,70,30);
+		emailT.setBounds(160,285,140,30);
+		this.add(emailL);
+		this.add(emailT);
+
+		updateBtn = new RoundedButton("수정 완료");
+		updateBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		updateBtn.setBounds(120,340,160,40);
+		updateBtn.setBackground(new Color(253,232,248));
+		this.add(updateBtn);
+		updateBtn.setBorderPainted(false);
+		
+		this.setBackground(new Color(255,255,255));
+		
+		// 수정완료버튼 누르면 DB에 업데이트
+		updateBtn.addActionListener(recipeMain);
+	} // 생성자
+	
+	public int updateMember(String pwdCheck) {
+		int su = 0;
+		
+		su = new MemberDAO().updateMember(idT.getText(), pwdT.getText(), emailT.getText(), pwdCheck);
+		return su;
+	}
+	
+	public JTextField getIdT() {
+		return idT;
+	}
+	
+	public JTextField getEmailT() {
+		return emailT;
+	}
+	
+	public JPasswordField getPwdT() {
+		return pwdT;
+	}
+	
+}

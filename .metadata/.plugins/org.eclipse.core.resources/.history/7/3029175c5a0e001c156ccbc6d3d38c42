@@ -1,0 +1,112 @@
+package mini;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class UpdatePanel extends JPanel{
+	private RecipeMain recipeMain;
+	private JLabel updateL, idL, pwdL, emailL;
+	private JTextField idT, emailT;
+	private JPasswordField pwdT;
+	private JButton updateBtn;
+	private Icon updateImg = new ImageIcon("image/내 정보 수정.png");
+	private Icon idImg = new ImageIcon("image/아이디.png");
+	private Icon pwdImg = new ImageIcon("image/비밀번호.png");
+	private Icon mailImg = new ImageIcon("image/이메일.png");
+	
+	public UpdatePanel(RecipeMain recipeMain) {
+		this.recipeMain = recipeMain;
+		setLayout(new GridLayout(6, 1));
+		
+		JPanel P5 = new JPanel();
+		P5.setBackground(new Color(251, 169, 134));
+		
+		JPanel P = new JPanel();
+		P.setBackground(new Color(251, 169, 134));
+		updateL = new JLabel(" 내 정보 수정 ", JLabel.CENTER);
+		updateL.setFont(new Font("12롯데마트행복Bold", Font.BOLD, 35));
+		updateL.setPreferredSize(new Dimension(400, 60));
+		P.add(updateL);
+		
+		JPanel P1 = new JPanel();
+		P1.setBackground(new Color(251, 169, 134));
+		idL = new JLabel("    ID");
+		idT = new JTextField("",25);
+		idL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		idL.setPreferredSize(new Dimension(60, 45));
+		idT.setPreferredSize(new Dimension(100, 45));
+		P1.add(idL);
+		P1.add(idT);
+		
+		JPanel P2 = new JPanel();
+		P2.setBackground(new Color(251, 169, 134));
+		pwdL = new JLabel("비밀번호");
+		pwdT = new JPasswordField("",25);
+		pwdL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		pwdL.setPreferredSize(new Dimension(60, 45));
+		pwdT.setPreferredSize(new Dimension(100, 45));
+		P2.add(pwdL);
+		P2.add(pwdT);
+		
+		JPanel P3 = new JPanel();
+		P3.setBackground(new Color(251, 169, 134));
+		emailL = new JLabel(" 이메일");
+		emailT = new JTextField("",25);
+		emailL.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		emailL.setPreferredSize(new Dimension(60, 45));
+		emailT.setPreferredSize(new Dimension(100, 45));
+		P3.add(emailL);
+		P3.add(emailT);
+		
+		JPanel P4 = new JPanel();
+		P4.setBackground(new Color(251, 169, 134));
+		updateBtn = new JButton("수정 완료");
+		updateBtn.setPreferredSize(new Dimension(100, 45));
+		updateBtn.setBackground(new Color(255, 255, 255));
+		updateBtn.setFont(new Font("빙그레 메로나체", Font.BOLD, 15));
+		updateBtn.setBorderPainted(false);
+		P4.add(updateBtn);
+		
+		this.add(P5);
+		this.add(P);
+		this.add(P1);
+		this.add(P2);
+		this.add(P3);
+		this.add(P4);
+		
+		setBackground(new Color(251, 169, 134));
+		
+		// 수정완료버튼 누르면 DB에 업데이트
+		updateBtn.addActionListener(recipeMain);
+	} // 생성자
+	
+	public int updateMember(String pwdCheck) {
+		int su = 0;
+		
+		su = new MemberDAO().updateMember(idT.getText(), pwdT.getText(), emailT.getText(), pwdCheck);
+		return su;
+	}
+	
+	public JTextField getIdT() {
+		return idT;
+	}
+	
+	public JTextField getEmailT() {
+		return emailT;
+	}
+	
+	public JPasswordField getPwdT() {
+		return pwdT;
+	}
+	
+}

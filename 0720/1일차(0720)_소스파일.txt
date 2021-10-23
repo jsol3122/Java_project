@@ -1,0 +1,27 @@
+class HelloTest {
+	public static void main(String[] args) {
+		System.out.print("안녕하세요\n");
+		System.out.println("반갑습니다");
+		System.out.println("사과\t딸기\t수박");
+		System.out.println();
+		System.out.println(25+36);
+		System.out.println("25+36");
+		System.out.println("25"+"36");
+		System.out.println("25 + 36=" + 25 + 36);
+		System.out.println("25 + 36=" + (25 + 36));
+	}
+}
+
+------------------------------------------------------------------------결과물----------
+D:\java_se>javac HelloTest.java
+
+D:\java_se>java HelloTest
+안녕하세요
+반갑습니다
+사과    딸기    수박
+
+61
+25+36
+2536
+25 + 36=2536
+25 + 36=61
